@@ -8,15 +8,20 @@ class ErrorBoundary extends React.Component {
         }
     }
 
-    componentDidCatch(error, info) {
-        this.setState({ hasError: true });
+    static getDerivedStateFromError(error) {
+        return { hasError: true };
+    }
+
+    componentDidCatch(error, errorInfo) {
+        // Log error in 'did catch'. Render fallback UI with static method above
+        // TODO, some error loggingthis.setState({ hasError: true });
     }
 
     render() {
         if (this.state.hasError) {
-            return <h1>Ooops. That is not good</h1>
+            return <h1>Ooops. That is not good</h1>;
         }
-        return this.props.children
+        return this.props.children;
     }
 }
 
